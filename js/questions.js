@@ -1,7 +1,8 @@
 // Global Variables
 var index = 0;
+var counter;
 var correctAnswers = 0;
-var timerSeconds = 10;
+var timerSeconds = 30;
 var timeEl = document.getElementById("timer");
 var nameOfPlayer = document.getElementById("first-name").value;
 var scores = [];
@@ -70,23 +71,23 @@ $(document).ready(function () {
    $("#startBtn").click(function setTime() {
       var timerInterval = setInterval(function () {
          timerSeconds--;
-         console.log(timerSeconds);
+         // console.log(timerSeconds);
          timeEl.textContent = `${timerSeconds} Seconds left to finish quiz`;
 
          if (timerSeconds <= 0) {
             clearInterval(timerInterval);
-            alert("Times Up!");
+            // alert("Times Up!");
             document.getElementById("questionToBeAsked").innerHTML = "You have: " + correctAnswers + " correct answer.";
             $(".hover").hide();
             $(startBtn).hide();
             $("#HighScore").show();
             $("#pAgain").show();
 
-            var storedScored = JSON.parse(localStorage.setItem)
+            // var storedScored = JSON.parse(localStorage.setItem)
             correctAnswer = 0;
             index = 0;
 
-            index = 4;
+            // index = 4;
             // alert('times up');
          }
 
@@ -105,8 +106,11 @@ $(document).ready(function () {
    // Start the Questions 
    $("#startBtn").click(function () {
       $(this).text('Next');
+      $(startBtn).hide();
       $("#HighScore").hide();
       $(".hover").show();
+      $("#indexAlert").text("index of: " + index);
+
 
       // const element = questions[index];
       document.getElementById("questionToBeAsked").innerHTML = questions[index].question;
@@ -115,35 +119,81 @@ $(document).ready(function () {
       document.getElementById("option3").innerHTML = questions[index].answer3;
       document.getElementById("option4").innerHTML = questions[index].answer4;
 
-      $(".wow").click(function () {
+      // Checks to see if index is 0 to begin with and increments it accordingly for sub functions
+      if (index === 0) {
          var solution = this.innerHTML;
-         console.log(index);
-         console.log(questions[index - 1].correctAnswer);
-         if (solution == questions[index - 1].correctAnswer) {
+
+         if (solution === questions[index].correctAnswer) {
             console.log(solution);
             correctAnswers = correctAnswers + 1
-            console.log(correctAnswers);
-         }
-         
-      })
+            // index++;
+            $("#indexAlert").text("index of: " + index);
 
+         }
+         if (solution != questions[index].correctAnswer) {
+            // index++;
+            $("#indexAlert").text("index of: " + index);
+         }
+
+      }
+
+
+      $(".wow").click(function () {
+         var solution = this.innerHTML;
+         console.log("index: " + index);
+
+
+
+         // console.log(questions[index -1].correctAnswer);
+         if (solution === questions[index].correctAnswer) {
+            console.log(solution);
+            correctAnswers = correctAnswers + 1
+            // index++;
+            $("#indexAlert").text("index of: " + index);
+
+         }
+         if (solution != questions[index].correctAnswer) {
+            // index++;
+            $("#indexAlert").text("index of: " + index);
+         }
+
+         if (index <= 4) {
+            index++;
+            document.getElementById("questionToBeAsked").innerHTML = questions[index].question;
+            document.getElementById("option1").innerHTML = questions[index].answer1;
+            document.getElementById("option2").innerHTML = questions[index].answer2;
+            document.getElementById("option3").innerHTML = questions[index].answer3;
+            document.getElementById("option4").innerHTML = questions[index].answer4;
+            // $(".hover").click(function(){
+            //    location.reload();
+            // })
+         }
+         if (index >= 4) {
+
+            document.getElementById("questionToBeAsked").innerHTML = "You have: " + correctAnswers + " correct answer.";
+            $(".hover").hide();
+            $(startBtn).hide();
+            $("#HighScore").show();
+            $("#pAgain").show();
+
+            // var storedScored = JSON.parse(localStorage.setItem)
+            correctAnswer = 0;
+            index = 0;
+            // $(".hover").click(function(){
+            //    location.reload();
+            // })
+         }
+
+         // location.reload();
+
+         // index++;
+      })
       console.log(index);
 
 
 
-      if (index === 4) {
 
-         document.getElementById("questionToBeAsked").innerHTML = "You have: " + correctAnswers + " correct answer.";
-         $(".hover").hide();
-         $(startBtn).hide();
-         $("#HighScore").show();
-         $("#pAgain").show();
-
-         var storedScored = JSON.parse(localStorage.setItem)
-         correctAnswer = 0;
-         index = 0;
-      }
-      index++
+      // index++
       // 
 
 
