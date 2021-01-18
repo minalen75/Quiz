@@ -87,8 +87,6 @@ $(document).ready(function () {
             correctAnswer = 0;
             index = 0;
 
-            // index = 4;
-            // alert('times up');
          }
 
       }, 1000);
@@ -126,18 +124,18 @@ $(document).ready(function () {
          if (solution === questions[index].correctAnswer) {
             console.log(solution);
             correctAnswers = correctAnswers + 1
-            // index++;
+            
             $("#indexAlert").text("index of: " + index);
 
          }
          if (solution != questions[index].correctAnswer) {
-            // index++;
+            
             $("#indexAlert").text("index of: " + index);
          }
 
       }
 
-
+      // Starts Second Set of variable to increment and cycle through questions and answers
       $(".wow").click(function () {
          var solution = this.innerHTML;
          console.log("index: " + index);
@@ -148,12 +146,12 @@ $(document).ready(function () {
          if (solution === questions[index].correctAnswer) {
             console.log(solution);
             correctAnswers = correctAnswers + 1
-            // index++;
+            
             $("#indexAlert").text("index of: " + index);
 
          }
          if (solution != questions[index].correctAnswer) {
-            // index++;
+            
             $("#indexAlert").text("index of: " + index);
          }
 
@@ -164,38 +162,28 @@ $(document).ready(function () {
             document.getElementById("option2").innerHTML = questions[index].answer2;
             document.getElementById("option3").innerHTML = questions[index].answer3;
             document.getElementById("option4").innerHTML = questions[index].answer4;
-            // $(".hover").click(function(){
-            //    location.reload();
-            // })
+            
          }
          if (index >= 4) {
-
-            document.getElementById("questionToBeAsked").innerHTML = "You have: " + correctAnswers + " correct answer.";
+            
+            document.getElementById("questionToBeAsked").innerHTML = nameOfPlayer + " uou have: " + correctAnswers + " of 4 correct answer.";
             $(".hover").hide();
             $(startBtn).hide();
             $("#HighScore").show();
             $("#pAgain").show();
 
-            // var storedScored = JSON.parse(localStorage.setItem)
+            
+            var player =   nameofPlayer
+            localStorage.setItem(player);
+            localStorage.setItem(correctAnswers); 
             correctAnswer = 0;
             index = 0;
-            // $(".hover").click(function(){
-            //    location.reload();
-            // })
+            
          }
 
-         // location.reload();
-
-         // index++;
+       
       })
       console.log(index);
-
-
-
-
-      // index++
-      // 
-
 
 
    });
