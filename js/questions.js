@@ -166,7 +166,9 @@ $(document).ready(function () {
          }
          if (index >= 4) {
             
-            document.getElementById("questionToBeAsked").innerHTML = nameOfPlayer + " uou have: " + correctAnswers + " of 4 correct answer.";
+            timeEl = 0;
+            // document.getElementById("timer").hide();
+            document.getElementById("questionToBeAsked").innerHTML = nameOfPlayer + " you have: " + correctAnswers + " of 4 correct answers.";
             $(".hover").hide();
             $(startBtn).hide();
             $("#HighScore").show();
